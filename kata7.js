@@ -1,3 +1,12 @@
+//Refactored first solution
+const orderFinal = (words) => {
+  let arr = words.split(' ').map((el) => [el, Number(el.replace(/[^0-9]/g, ' '))]).sort(function (a, b) {
+    return a[1] - b[1];
+  });
+  return arr.map(el => el[0]).join(' ')
+  }
+
+//Original first solution
 const order = (words) => {
   let newWords = words.split(' ');
   // console.log(newWords)
@@ -7,18 +16,19 @@ const order = (words) => {
   // for (let j=0 ;j<newWords.length; j++){
   //   arr.push([newWords[j],Number(newWords[j].replace(/[^1-9]/g,""))]);
   // }
-  arr = newWords.map((el) => [el, Number(el.replace(/[^0-9]/g, ' '))]);
-  arr.sort(function (a, b) {
+  arr = newWords.map((el) => [el, Number(el.replace(/[^0-9]/g, ' '))]).sort(function (a, b) {
     return a[1] - b[1];
   });
   // console.log(arr)
 
-  let flatArray = arr.flat();
+
+  finalArr = arr.map(el => el[0])
+  console.log(finalArr)
+  // let flatArray = arr.flat();
   // console.log(flatArray)
-  finalArr = flatArray.filter((el) => flatArray.indexOf(el) % 2 === 0);
+  // finalArr = flatArray.filter((el) => flatArray.indexOf(el) % 2 === 0);
   // finalArr = (arr.flat()).filter(el=> ((arr.flat()).indexOf(el))%2===0)
 
-  console.log(finalArr);
   return finalArr.join(' ');
   // return (finalArr.toLocaleString().replace(/,/g," "))
   // const obj = Object.fromEntries(arr)
@@ -42,6 +52,7 @@ console.log(order('is2 Thi1s T4est 3a'));
 // "4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
 //.split("").sort()
 
+//Second solution 
 const order3 = (wording) => {
   return wording
     .split(' ')
@@ -49,12 +60,3 @@ const order3 = (wording) => {
     .join(' ');
 };
 console.log(order3('is2 Thi1s T4est 3a'));
-
-const order2 = () => {
-  return words
-    .split(' ')
-    .sort(function (a, b) {
-      return a.match(/\d/) - b.match(/\d/);
-    })
-    .join(' ');
-};
